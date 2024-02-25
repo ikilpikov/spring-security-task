@@ -14,9 +14,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests()
-                .antMatchers("/auth/*").permitAll()
+                .antMatchers("/auth/*").anonymous()
                 .antMatchers("/user/*").hasRole("ADMIN")
-                .antMatchers("/weather/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/weather/*").authenticated()
                 .and()
                 .logout().logoutUrl("/logout")
                 .and()
