@@ -16,7 +16,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/auth/*").anonymous()
                 .antMatchers("/user/*").hasRole("ADMIN")
-                .antMatchers("/weather/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/weather/*").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")
