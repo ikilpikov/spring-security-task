@@ -23,21 +23,18 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    @PreAuthorize("isAnonymous()")
     public String getLoginPage(Model model) {
         model.addAttribute("loginRequest", new LoginRequest());
         return "login";
     }
 
     @GetMapping("/register")
-    @PreAuthorize("isAnonymous()")
     public String getRegisterPage(Model model) {
         model.addAttribute("registerRequest", new RegisterRequest());
         return "register";
     }
 
     @PostMapping("/register")
-    @PreAuthorize("isAnonymous()")
     public String register(@ModelAttribute @Valid RegisterRequest request, Model model) {
         userService.registerUser(request);
         model.addAttribute("message", "Register success");

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WeatherController {
 
     @GetMapping("/current")
-    @PreAuthorize("isAuthenticated()")
     public String showWeather() {
         return "weather";
     }

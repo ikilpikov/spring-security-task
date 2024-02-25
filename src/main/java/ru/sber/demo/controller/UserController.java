@@ -18,7 +18,6 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasRole('ADMIN')")
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.fetchAllUsers());
         return "users";
