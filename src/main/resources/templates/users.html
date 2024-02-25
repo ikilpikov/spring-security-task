@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+<a href="/logout">Выход</a>
+<a href="/weather/current">Страничка с погодой</a>
+<div th:each="user: ${users}">
+    <p th:text="*{user.id + ' ' + user.username}"></p>
+</div>
+</body>
+</html>
