@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.*;
+import ru.sber.demo.dto.LoginRequest;
 import ru.sber.demo.dto.RegisterRequest;
 import ru.sber.demo.service.UserService;
 
@@ -18,6 +19,12 @@ public class AuthController {
 
     public AuthController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage(Model model) {
+        model.addAttribute("loginRequest", new LoginRequest());
+        return "login";
     }
 
     @GetMapping("/register")

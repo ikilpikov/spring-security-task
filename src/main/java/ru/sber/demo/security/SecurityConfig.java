@@ -12,11 +12,16 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        return http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/*").permitAll()
+                .antMatchers("/auth/*").anonymous()
                 .antMatchers("/user/*").hasRole("ADMIN")
                 .antMatchers("/weather/*").hasAnyRole("USER", "ADMIN")
+                .and()
+                .formLogin()
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/weather/current")
                 .and()
                 .logout().logoutUrl("/logout")
                 .and()
