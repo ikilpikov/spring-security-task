@@ -10,6 +10,7 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import ru.sber.demo.domain.Role;
 import ru.sber.demo.dto.RegisterRequest;
 import ru.sber.demo.security.SecurityConfig;
 import ru.sber.demo.service.UserService;
@@ -34,7 +35,7 @@ class AuthControllerTest {
     private static final String VALID_USERNAME = "user";
     private static final String INVALID_USERNAME = "u1";
 
-    private RegisterRequest userDto = new RegisterRequest("user", "user", "ROLE_USER");
+    private RegisterRequest userDto = new RegisterRequest("user", "user", Role.ROLE_USER);
 
     @Test
     @WithAnonymousUser

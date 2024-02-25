@@ -10,6 +10,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import ru.sber.demo.domain.Role;
 import ru.sber.demo.domain.User;
 import ru.sber.demo.security.SecurityConfig;
 import ru.sber.demo.service.UserService;
@@ -29,8 +30,8 @@ class UserControllerTest {
     private UserService userService;
 
     private List<User> usersStub = List.of(
-            new User("user", "hash", "ROLE_USER"),
-            new User("admin", "hash", "ROLE_ADMIN")
+            new User("user", "hash", Role.ROLE_USER),
+            new User("admin", "hash", Role.ROLE_ADMIN)
     );
 
     @Test

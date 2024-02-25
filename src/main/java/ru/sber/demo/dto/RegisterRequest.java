@@ -1,6 +1,8 @@
 package ru.sber.demo.dto;
 
 
+import ru.sber.demo.domain.Role;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Pattern;
@@ -15,12 +17,12 @@ public class RegisterRequest {
     @Size(min = 4, max = 40, message = "Password must be from 4 to 40 characters long")
     private String password;
 
-    private String role;
+    private Role role;
 
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String username, String password, String role) {
+    public RegisterRequest(String username, String password, Role role) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -42,11 +44,11 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
