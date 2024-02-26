@@ -38,7 +38,7 @@ class UserControllerTest {
     @WithAnonymousUser
     void get_all_users_when_unauthorized() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/user/all"))
-                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+                .andExpect(MockMvcResultMatchers.status().isFound());
     }
 
     @Test

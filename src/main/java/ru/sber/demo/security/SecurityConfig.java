@@ -20,7 +20,7 @@ public class SecurityConfig {
                 .and()
                 .logout().logoutUrl("/logout")
                 .and()
-                .httpBasic().and().build();
+                .build();
     }
 
     @Bean

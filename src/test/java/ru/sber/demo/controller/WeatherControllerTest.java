@@ -30,7 +30,7 @@ class WeatherControllerTest {
     @WithAnonymousUser
     void show_weather_page_when_unauthorized() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/weather/current"))
-                .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+                .andExpect(MockMvcResultMatchers.status().isFound());
     }
 
 }
