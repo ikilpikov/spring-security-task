@@ -36,7 +36,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute @Valid RegisterRequest request, Model model) {
-        userService.registerUser(request);
+        //userService.registerUser(request);
         model.addAttribute("message", "Register success");
         return "register";
     }

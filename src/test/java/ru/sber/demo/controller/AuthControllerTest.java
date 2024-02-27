@@ -35,7 +35,7 @@ class AuthControllerTest {
     private static final String VALID_USERNAME = "user";
     private static final String INVALID_USERNAME = "u1";
 
-    private RegisterRequest userDto = new RegisterRequest("user", "user", Role.ROLE_USER);
+    private final RegisterRequest userDto = new RegisterRequest("user", "user", Role.ROLE_USER);
 
     @Test
     @WithAnonymousUser

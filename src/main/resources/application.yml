@@ -8,6 +8,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
 server:
   port: 8080
+custom-properties:
+  jwt:
+    secret: jsonwebtokensecretphrasepneumonoultramicroscopicsilicovolcanoconiosisantidisestablishmentarianism
+    issuer: ilya
