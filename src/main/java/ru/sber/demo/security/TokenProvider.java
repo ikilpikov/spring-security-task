@@ -14,11 +14,6 @@ import java.util.Date;
 @Component
 public class TokenProvider {
 
-/*
-    @Value("${spring.security.authentication.jwt.validity}")
-    private long tokenLifetime;
-*/
-
     @Value("${custom-properties.jwt.secret}")
     private String secretKey;
 

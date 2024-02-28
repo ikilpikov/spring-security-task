@@ -1,8 +1,9 @@
 package ru.sber.demo.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import io.jsonwebtoken.ExpiredJwtException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.*;
 import ru.sber.demo.dto.LoginRequest;
@@ -10,9 +11,9 @@ import ru.sber.demo.dto.RegisterRequest;
 import ru.sber.demo.service.UserService;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
-import javax.validation.Valid;
+import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -22,30 +23,24 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
-    public String getLoginPage(Model model) {
-        model.addAttribute("loginRequest", new LoginRequest());
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String getRegisterPage(Model model) {
-        model.addAttribute("registerRequest", new RegisterRequest());
-        return "register";
+    @PostMapping("/login")
+    public Map<String, String> authenticate(@RequestBody LoginRequest loginRequest) throws Exception {
+        return userService.authenticateUser(loginRequest);
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute @Valid RegisterRequest request, Model model) {
-        //userService.registerUser(request);
-        model.addAttribute("message", "Register success");
-        return "register";
+    public Map<String, String> register(@RequestBody RegisterRequest registerRequest) throws Exception {
+        return userService.registerUser(registerRequest);
+    }
+
+    @ExceptionHandler({BadCredentialsException.class, ExpiredJwtException.class})
+    public ResponseEntity<String> handleJwtException(Exception ex) {
+        return new ResponseEntity<>("cannot authenticate", HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({BindException.class, KeyAlreadyExistsException.class})
-    public String handleValidationException(Exception ex, Model model) {
-        model.addAttribute("registerRequest", new RegisterRequest());
-        model.addAttribute("message", "Register failed");
-        return "register";
+    public ResponseEntity<String> handleValidationException(Exception ex) {
+        return new ResponseEntity<>("register failed", HttpStatus.BAD_REQUEST);
     }
 
 }
